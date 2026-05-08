@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AppBackground from "@/components/AppBackground";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "SAGA — Intelligent Automation Solutions for Your Business",
@@ -43,8 +44,10 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" />
       </head>
       <body style={{ cursor: "none", overflowX: "hidden" }}>
-        <AppBackground />
-        <div style={{ position: "relative", zIndex: 10 }}>{children}</div>
+        <SmoothScroll>
+          <AppBackground />
+          <div style={{ position: "relative", zIndex: 10 }}>{children}</div>
+        </SmoothScroll>
       </body>
     </html>
   );

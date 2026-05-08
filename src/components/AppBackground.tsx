@@ -19,7 +19,7 @@ export default function AppBackground() {
   return (
     <>
       <motion.div style={{ opacity: bgOpacity, scale: bgScale, position: "fixed", inset: 0, zIndex: 1 }}>
-        <EdgeTextures />
+        {/* <EdgeTextures /> */}
       </motion.div>
 
       <CursorGlow />

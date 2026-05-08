@@ -129,7 +129,7 @@ export default function ComputeSection() {
         >
           <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,0.02)", padding: "6px 16px", borderRadius: "99px", border: "1px solid rgba(255,255,255,0.06)", marginBottom: "32px" }}>
             <Sparkles size={13} color="rgba(255,255,255,0.4)" />
-            <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(255,255,255,0.4)" }}>
+            <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#ffffff" }}>
               Welcome to our onion ai
             </span>
           </div>
@@ -146,7 +146,7 @@ export default function ComputeSection() {
           </h2>
 
           <p style={{
-            color: "rgba(255,255,255,0.35)",
+            color: "#ffffff",
             fontSize: "1.05rem",
             fontWeight: 300,
             marginBottom: "44px",

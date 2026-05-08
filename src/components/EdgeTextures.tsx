@@ -3,13 +3,13 @@
 import React, { useEffect, useRef } from "react";
 
 // ── Tuning ──────────────────────────────────────────────────────────────────
-const PANEL_W = 200; // px wide for each edge panel
-const DOT_GAP = 8; // dot-grid spacing (px in SVG coords)
+const PANEL_W = 50; // px wide for each edge panel
+const DOT_GAP = 0; // dot-grid spacing (px in SVG coords)
 const DOT_R = 1.5; // dot radius
 const SVG_H = 1000; // viewBox height (scales to 100dvh via CSS)
-const ZONE = 320; // px from edge where hover glow starts
+const ZONE = 60; // px from edge where hover glow starts
 const BRIGHTNESS_REST = 0.6; // idle brightness (dim)
-const BRIGHTNESS_PEAK = 1.5; // peak brightness on cursor-at-edge
+const BRIGHTNESS_PEAK = 2.5; // peak brightness on cursor-at-edge
 
 // ── Inner SVG ───────────────────────────────────────────────────────────────
 // Each SVG has two curved "sheet" bands clipped with S-curve bezier paths,

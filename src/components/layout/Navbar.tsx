@@ -55,9 +55,9 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              style={{ fontSize: "14px", fontWeight: 300, color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+              style={{ fontSize: "14px", fontWeight: 300, color: "#ffffff", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
             >
               {link.label}
             </a>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }} className="nav-desktop">
-          <a href="#" style={{ fontSize: "14px", fontWeight: 300, color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}>
+          <a href="#" style={{ fontSize: "14px", fontWeight: 300, color: "#ffffff", textDecoration: "none", transition: "color 0.2s" }}>
             Sign In
           </a>
           <button className="btn-primary" style={{ padding: "10px 22px", fontSize: "13px" }}>
@@ -103,14 +103,14 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 300, color: "var(--text-secondary)", textDecoration: "none" }}
+                style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 300, color: "#ffffff", textDecoration: "none" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
             ))}
             <hr style={{ border: "none", borderTop: "1px solid var(--border-subtle)", margin: "12px 0" }} />
-            <a href="#" style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 300, color: "var(--text-secondary)", textDecoration: "none" }}>
+            <a href="#" style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 300, color: "#ffffff", textDecoration: "none" }}>
               Sign In
             </a>
             <button className="btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: "12px" }}>

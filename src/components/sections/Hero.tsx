@@ -39,6 +39,10 @@ export default function Hero() {
   const timeRef = useRef<number>(0);
   const [mounted, setMounted] = useState(false);
 
+  const sectionRef = useRef<HTMLElement>(null);
+
+
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -610,6 +614,7 @@ export default function Hero() {
   return (
     <section
       id="home"
+      ref={sectionRef}
       style={{
         position: "relative",
         width: "100%",
@@ -617,62 +622,61 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Single canvas — everything rendered here */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 1,
-        }}
-      />
-
-      {/* Vignette overlay for depth */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "radial-gradient(ellipse at center, transparent 30%, rgba(3,3,6,0.5) 70%, rgba(3,3,6,0.85) 100%)",
-          pointerEvents: "none",
-          zIndex: 3,
+          zIndex: 1,
         }}
-      />
+      >
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+          }}
+        />
 
-      {/* Human hand — absolute left, reaching right toward SAGA */}
-      <motion.img
-        src="/humanhand.png"
-        alt=""
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 0.9, y: 0 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-        style={{
-          position: "absolute",
-          left: "-2%",
-          top: "2%",
-          width: "clamp(200px, 50vw, 1800px)",
-          height: "auto",
-          objectFit: "contain",
-          zIndex: 5,
-          pointerEvents: "none",
-          filter:
-            "drop-shadow(0 0 30px rgba(123, 47, 255, 0.25)) brightness(0.85)",
-        }}
-      />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse at center, transparent 30%, rgba(3,3,6,0.5) 70%, rgba(3,3,6,0.85) 100%)",
+            pointerEvents: "none",
+            zIndex: 3,
+          }}
+        />
 
-      {/* Robot hand — absolute right, reaching down toward SAGA */}
-      {/* Wrapper owns the static scaleX(-1.2) so Framer never touches it */}
-      <motion.img
-        src="/robohand.png"
-        alt=""
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 0.9, y: 0 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-        style={
-          {
+        <motion.img
+          src="/humanhand.png"
+          alt=""
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 0.9, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          style={{
+            position: "absolute",
+            left: "-2%",
+            top: "2%",
+            width: "clamp(200px, 50vw, 1800px)",
+            height: "auto",
+            objectFit: "contain",
+            zIndex: 5,
+            pointerEvents: "none",
+            filter: "drop-shadow(0 0 30px rgba(123, 47, 255, 0.25)) brightness(0.85)",
+          }}
+        />
+
+        <motion.img
+          src="/robohand.png"
+          alt=""
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 0.9, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          style={{
             position: "absolute",
             right: "-1%",
             top: "0%",
@@ -681,151 +685,75 @@ export default function Hero() {
             objectFit: "contain",
             zIndex: 5,
             pointerEvents: "none",
-            filter:
-              "drop-shadow(0 0 30px rgba(123, 47, 255, 0.3)) brightness(0.9)",
+            filter: "drop-shadow(0 0 30px rgba(123, 47, 255, 0.3)) brightness(0.9)",
             scaleX: -1.2,
-          } as React.CSSProperties
-        }
-      />
+          } as React.CSSProperties}
+        />
 
-      {/* SAGA text — centered, on top */}
-      {/*
-        Plain div owns the centering transform so Framer never overwrites it.
-        motion.div inside handles only opacity / y / filter.
-      */}
-      <div
-        style={{
-          position: "absolute",
-          top: "56%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 5,
-          pointerEvents: "none",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        <div
           style={{
-            textAlign: "center",
-            willChange: "opacity, transform, filter",
+            position: "absolute",
+            top: "56%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 5,
+            pointerEvents: "none",
           }}
         >
-          <h1
-            style={{
-              fontFamily: "'Michroma', sans-serif",
-              fontSize: "clamp(3.5rem, 14vw, 12rem)",
-              fontWeight: 400,
-              letterSpacing: "0.3em",
-              color: "transparent",
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.75) 35%, rgba(200,190,255,0.5) 65%, rgba(123,47,255,0.25) 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter:
-                "drop-shadow(0 0 40px rgba(123, 47, 255, 0.2)) drop-shadow(0 0 80px rgba(123, 47, 255, 0.08))",
-              margin: 0,
-              padding: 0,
-              lineHeight: 1,
-              userSelect: "none",
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            style={{ textAlign: "center", willChange: "opacity, transform, filter" }}
           >
-            SAGA
-          </h1>
+            <h1
+              style={{
+                fontFamily: "'Michroma', sans-serif",
+                fontSize: "clamp(3.5rem, 14vw, 12rem)",
+                fontWeight: 400,
+                letterSpacing: "0.3em",
+                color: "transparent",
+                background: "linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.75) 35%, rgba(200,190,255,0.5) 65%, rgba(123,47,255,0.25) 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                filter: "drop-shadow(0 0 40px rgba(123, 47, 255, 0.2)) drop-shadow(0 0 80px rgba(123, 47, 255, 0.08))",
+                margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                userSelect: "none",
+              }}
+            >
+              SAGA
+            </h1>
 
-          {/* Horizontal flare below SAGA */}
-          <style>{`
-          @keyframes flarePulse {
-            0%, 100% {
-              transform: scaleX(0.6);
-              opacity: 0.7;
-            }
-            50% {
-              transform: scaleX(1.3);
-              opacity: 1;
-            }
-          }
-        `}</style>
-          <div
-            style={{
-              position: "relative",
-              width: "clamp(300px, 60vw, 900px)",
-              marginTop: "clamp(8px, 12vh, 100px)",
-              marginLeft: "auto",
-              marginRight: "auto",
-              animation: "flarePulse 4s ease-in-out infinite",
-              willChange: "transform, opacity",
-            }}
-          >
-            {/* Core bright line */}
+            <style>{`
+                @keyframes flarePulse {
+                  0%, 100% { transform: scaleX(0.6); opacity: 0.7; }
+                  50% { transform: scaleX(1.3); opacity: 1; }
+                }
+              `}</style>
             <div
               style={{
-                width: "100%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 15%, rgba(255,255,255,0.6) 35%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.6) 65%, rgba(255,255,255,0.05) 85%, transparent 100%)",
-                borderRadius: "1px",
+                position: "relative",
+                width: "clamp(300px, 60vw, 900px)",
+                marginTop: "clamp(8px, 12vh, 100px)",
+                marginLeft: "auto",
+                marginRight: "auto",
+                animation: "flarePulse 4s ease-in-out infinite",
+                willChange: "transform, opacity",
               }}
-            />
-            {/* Soft violet glow spread */}
-            <div
-              style={{
-                position: "absolute",
-                top: "-6px",
-                left: "10%",
-                right: "10%",
-                height: "14px",
-                background:
-                  "linear-gradient(90deg, transparent 0%, rgba(123,47,255,0.0) 10%, rgba(160,120,255,0.2) 30%, rgba(200,180,255,0.35) 50%, rgba(160,120,255,0.2) 70%, rgba(123,47,255,0.0) 90%, transparent 100%)",
-                filter: "blur(6px)",
-                borderRadius: "50%",
-              }}
-            />
-            {/* Wide atmospheric scatter */}
-            <div
-              style={{
-                position: "absolute",
-                top: "-12px",
-                left: "5%",
-                right: "5%",
-                height: "26px",
-                background:
-                  "linear-gradient(90deg, transparent 0%, rgba(123,47,255,0.0) 15%, rgba(123,47,255,0.08) 35%, rgba(160,130,255,0.12) 50%, rgba(123,47,255,0.08) 65%, rgba(123,47,255,0.0) 85%, transparent 100%)",
-                filter: "blur(12px)",
-                borderRadius: "50%",
-              }}
-            />
-          </div>
-        </motion.div>
+            >
+              <div style={{ width: "100%", height: "2px", background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 15%, rgba(255,255,255,0.6) 35%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.6) 65%, rgba(255,255,255,0.05) 85%, transparent 100%)", borderRadius: "1px" }} />
+              <div style={{ position: "absolute", top: "-6px", left: "10%", right: "10%", height: "14px", background: "linear-gradient(90deg, transparent 0%, rgba(123,47,255,0.0) 10%, rgba(160,120,255,0.2) 30%, rgba(200,180,255,0.35) 50%, rgba(160,120,255,0.2) 70%, rgba(123,47,255,0.0) 90%, transparent 100%)", filter: "blur(6px)", borderRadius: "50%" }} />
+              <div style={{ position: "absolute", top: "-12px", left: "5%", right: "5%", height: "26px", background: "linear-gradient(90deg, transparent 0%, rgba(123,47,255,0.0) 15%, rgba(123,47,255,0.08) 35%, rgba(160,130,255,0.12) 50%, rgba(123,47,255,0.08) 65%, rgba(123,47,255,0.0) 85%, transparent 100%)", filter: "blur(12px)", borderRadius: "50%" }} />
+            </div>
+          </motion.div>
+        </div>
+        {/* Gradients */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "150px", background: "linear-gradient(to bottom, rgba(0,0,0,0), #000000)", zIndex: 6, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to top, transparent, rgba(3,3,6,0.3))", zIndex: 6, pointerEvents: "none" }} />
       </div>
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "150px",
-          background: "linear-gradient(to bottom, rgba(0,0,0,0), #000000)",
-          zIndex: 6,
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Top subtle gradient */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "200px",
-          background: "linear-gradient(to top, transparent, rgba(3,3,6,0.3))",
-          zIndex: 6,
-          pointerEvents: "none",
-        }}
-      />
     </section>
   );
 }

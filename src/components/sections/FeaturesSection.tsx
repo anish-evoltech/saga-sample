@@ -341,7 +341,7 @@ export default function FeaturesSection() {
               <h3 className="font-display" style={{ fontSize: "1.25rem", marginBottom: "16px", color: "#fff", fontWeight: 100 }}>
                 {feature.title}
               </h3>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem", lineHeight: 1.6, fontWeight: 300 }}>
+              <p style={{ color: "#ffffff", fontSize: "0.95rem", lineHeight: 1.6, fontWeight: 300 }}>
                 {feature.description}
               </p>
             </motion.div>
